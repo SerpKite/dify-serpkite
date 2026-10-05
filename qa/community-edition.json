@@ -1,0 +1,51 @@
+{
+  "community_edition": "1.17.1",
+  "daemon": "0.6.10",
+  "package": "serpkite/serpkite:0.0.1",
+  "signature_verification": "disabled for unsigned developer package in disposable instance only",
+  "paid_searches": 0,
+  "invalid_credential": {
+    "status": 400,
+    "result": null,
+    "error_type": "ToolProviderCredentialValidationError",
+    "safe_message": "SerpKite credential validation failed. Check the API key and account status."
+  },
+  "valid_credential": {
+    "status": 200,
+    "result": "success",
+    "message": null
+  },
+  "tools_status": 200,
+  "tools": [
+    {
+      "name": "search",
+      "parameters": [
+        "query",
+        "country",
+        "language",
+        "num"
+      ]
+    },
+    {
+      "name": "news",
+      "parameters": [
+        "query",
+        "country",
+        "language",
+        "num"
+      ]
+    }
+  ],
+  "installed_plugins": [
+    {
+      "plugin_id": "serpkite/serpkite",
+      "version": "0.0.1",
+      "runtime_type": "local"
+    }
+  ],
+  "verified_at": "2026-10-05",
+  "verification_path": "Normal CE console API init/setup/login, package upload/install, task success, installed provider tools, authenticated credential add",
+  "cloud_verification": "Not performed; no Dify Cloud session available to this agent",
+  "credential_source": "Existing authorized e2e key; only /v1/account",
+  "package_unique_identifier": "serpkite/serpkite:0.0.1@e2b82c1efc7ff24bee2549d85f010cc6cc8c4f6dae47cff4c378f74c62427b21"
+}
