@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
 author: serpkite
 name: serpkite
@@ -9,6 +9,8 @@ description:
 icon: icon.svg
 created_at: "2026-10-05T00:00:00Z"
 privacy: PRIVACY.md
+repo: https://github.com/SerpKite/dify-serpkite
+contact: support@serpkite.com
 resource:
   memory: 268435456
   permission:
@@ -18,7 +20,8 @@ plugins:
   tools:
     - provider/serpkite.yaml
 meta:
-  version: 0.0.1
+  version: 0.0.2
+  minimum_dify_version: 1.17.1
   arch:
     - amd64
     - arm64
@@ -28,3 +31,6 @@ meta:
     entrypoint: main
 tags:
   - search
+network:
+  domains:
+    - api.serpkite.com

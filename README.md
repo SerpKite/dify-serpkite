@@ -12,7 +12,11 @@ Contact: support@serpkite.com
 3. Authorize the SerpKite provider with the full `skt_live_...` key.
 4. Add **Web Search** or **News Search** to an agent or workflow. Supply a query and optional country, language, and number of results.
 
-Credential validation calls `GET /v1/account` and does not perform a paid search. The plugin needs outbound HTTPS access to `api.serpkite.com`. It uses fixed API destinations with 30-second credential-check and 90-second search timeouts.
+Credential validation calls `GET /v1/account` and does not perform a paid search.
+
+## Connection requirements
+
+The plugin connects only to the fixed endpoint `https://api.serpkite.com` (host `api.serpkite.com`, port 443). The Dify plugin daemon needs outbound HTTPS network access to that host, directly or through your proxy. There is no base URL setting. Credential checks time out after 30 seconds and searches after 90 seconds.
 
 ## Outputs and billing
 
