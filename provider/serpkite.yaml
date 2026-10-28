@@ -4,10 +4,11 @@ identity:
   label:
     en_US: SerpKite
   description:
-    en_US: Search Google web and news with structured results and Markdown.
+    en_US: Google Search, News, Images, Maps, Shopping, Scholar and more, webpage reading and site crawls, cited answers and deep research, and what ChatGPT, Gemini, Copilot, Google AI Mode and Brave AI answer.
   icon: icon.svg
   tags:
     - search
+    - productivity
 credentials_for_provider:
   api_key:
     type: secret-input
@@ -22,6 +23,27 @@ credentials_for_provider:
 tools:
   - tools/search.yaml
   - tools/news.yaml
+  - tools/images.yaml
+  - tools/videos.yaml
+  - tools/shopping.yaml
+  - tools/scholar.yaml
+  - tools/patents.yaml
+  - tools/autocomplete.yaml
+  - tools/maps.yaml
+  - tools/place.yaml
+  - tools/webpage.yaml
+  - tools/extract.yaml
+  - tools/map.yaml
+  - tools/answer.yaml
+  - tools/chatgpt.yaml
+  - tools/gemini.yaml
+  - tools/copilot.yaml
+  - tools/ai_mode.yaml
+  - tools/brave_ai.yaml
+  - tools/crawl.yaml
+  - tools/crawl_result.yaml
+  - tools/research.yaml
+  - tools/research_result.yaml
 extra:
   python:
     source: provider/serpkite.py

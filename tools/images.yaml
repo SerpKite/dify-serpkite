@@ -1,0 +1,103 @@
+identity:
+  author: serpkite
+  name: images
+  label:
+    en_US: Image Search
+description:
+  human:
+    en_US: 'Search Google Images: image URL, size, title and source page. A page holds up to 100 images. Pricing: https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: Search Google Images. Returns image URLs, sizes, titles and source pages.
+parameters:
+- name: query
+  type: string
+  required: true
+  label:
+    en_US: Query
+  human_description:
+    en_US: What to search for.
+  form: llm
+  llm_description: The search query.
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Two-letter country code, such as us, gb or de.
+  form: llm
+  llm_description: Optional two-letter country code for localized results, e.g. us, gb, de.
+- name: language
+  type: string
+  required: false
+  label:
+    en_US: Language
+  human_description:
+    en_US: Language code, such as en or de.
+  form: llm
+  llm_description: Optional interface language code, e.g. en, de.
+- name: time
+  type: select
+  required: false
+  label:
+    en_US: Time Range
+  human_description:
+    en_US: Only results from the last hour, day, week, month or year.
+  form: llm
+  llm_description: 'Optional recency filter: hour, day, week, month or year.'
+  options:
+  - value: hour
+    label:
+      en_US: hour
+  - value: day
+    label:
+      en_US: day
+  - value: week
+    label:
+      en_US: week
+  - value: month
+    label:
+      en_US: month
+  - value: year
+    label:
+      en_US: year
+- name: num
+  type: number
+  required: false
+  label:
+    en_US: Number of Results
+  human_description:
+    en_US: Images to return from the page (1-100).
+  form: llm
+  llm_description: Optional number of images to return, 1 to 100.
+  min: 1
+  max: 100
+- name: page
+  type: number
+  required: false
+  label:
+    en_US: Page
+  human_description:
+    en_US: Result page, 1 to 10.
+  form: llm
+  llm_description: Optional result page from 1 to 10.
+  min: 1
+  max: 10
+- name: output
+  type: select
+  required: false
+  label:
+    en_US: Output
+  human_description:
+    en_US: markdown returns readable Markdown for agents; json returns the full JSON response for workflows, plus a short Markdown summary.
+  form: form
+  default: markdown
+  options:
+  - value: markdown
+    label:
+      en_US: markdown
+  - value: json
+    label:
+      en_US: json
+extra:
+  python:
+    source: tools/images.py

@@ -1,0 +1,42 @@
+identity:
+  author: serpkite
+  name: research
+  label:
+    en_US: Start Deep Research
+description:
+  human:
+    en_US: 'Start an async deep-research task: planned web searches, page reading and a cited Markdown report. Returns a task ID for Get Research Result. Billed only when the report is written. Pricing:
+      https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: Start an async deep-research task (web searches, reading pages, a cited Markdown report). Returns a task ID; then call Get Research Result with it. lite takes about a minute, deep several minutes.
+parameters:
+- name: input
+  type: string
+  required: true
+  label:
+    en_US: Research Task
+  human_description:
+    en_US: The research question or task.
+  form: llm
+  llm_description: The research question or task.
+- name: effort
+  type: select
+  required: false
+  label:
+    en_US: Effort
+  human_description:
+    en_US: lite, standard or deep (more searches and sources, higher price).
+  form: llm
+  llm_description: 'Optional effort: lite, standard (default) or deep.'
+  options:
+  - value: lite
+    label:
+      en_US: lite
+  - value: standard
+    label:
+      en_US: standard
+  - value: deep
+    label:
+      en_US: deep
+extra:
+  python:
+    source: tools/research.py

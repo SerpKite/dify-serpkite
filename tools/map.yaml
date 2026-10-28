@@ -1,0 +1,50 @@
+identity:
+  author: serpkite
+  name: map
+  label:
+    en_US: Map a Site
+description:
+  human:
+    en_US: 'List a website''s URLs from its sitemaps and links, optionally ranked by a search phrase. Pricing: https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: List a website's URLs (sitemaps plus the start page's links), optionally filtered and ranked by search words. Use it to find the right page on a site before reading it.
+parameters:
+- name: url
+  type: string
+  required: true
+  label:
+    en_US: URL
+  human_description:
+    en_US: Any page of the site.
+  form: llm
+  llm_description: The site to map (any page of it).
+- name: search
+  type: string
+  required: false
+  label:
+    en_US: Search
+  human_description:
+    en_US: Keep only URLs relevant to these words, most relevant first.
+  form: llm
+  llm_description: Optional words to keep only relevant URLs, most relevant first.
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Limit
+  human_description:
+    en_US: Maximum URLs to return (1-5000, default 100).
+  form: llm
+  llm_description: Optional maximum number of URLs, 1 to 5000.
+  min: 1
+  max: 5000
+- name: include_paths
+  type: string
+  required: false
+  label:
+    en_US: Include Paths
+  human_description:
+    en_US: Comma-separated regular expressions; keep only URL paths matching one (e.g. ^/docs/).
+  form: form
+extra:
+  python:
+    source: tools/map.py

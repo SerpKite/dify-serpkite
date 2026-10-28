@@ -1,0 +1,56 @@
+identity:
+  author: serpkite
+  name: webpage
+  label:
+    en_US: Fetch Webpage
+description:
+  human:
+    en_US: 'Fetch a public URL (HTML or PDF) and return its main content as clean Markdown with metadata. Pricing: https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: Fetch a public URL (HTML page or PDF) and return its main content as clean Markdown. Use it to read a page found in search results.
+parameters:
+- name: url
+  type: string
+  required: true
+  label:
+    en_US: URL
+  human_description:
+    en_US: The page or PDF to read.
+  form: llm
+  llm_description: The full URL of the page or PDF to read.
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Fetch the page as seen from this country (two-letter code).
+  form: llm
+  llm_description: Optional two-letter country code for geo-dependent pages.
+- name: include_links
+  type: boolean
+  required: false
+  label:
+    en_US: Include Links
+  human_description:
+    en_US: Also return the page's outbound links.
+  form: form
+  default: false
+- name: output
+  type: select
+  required: false
+  label:
+    en_US: Output
+  human_description:
+    en_US: markdown returns readable Markdown for agents; json returns the full JSON response for workflows, plus a short Markdown summary.
+  form: form
+  default: markdown
+  options:
+  - value: markdown
+    label:
+      en_US: markdown
+  - value: json
+    label:
+      en_US: json
+extra:
+  python:
+    source: tools/webpage.py

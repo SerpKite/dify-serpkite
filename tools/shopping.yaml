@@ -1,0 +1,76 @@
+identity:
+  author: serpkite
+  name: shopping
+  label:
+    en_US: Shopping Search
+description:
+  human:
+    en_US: 'Search Google Shopping: products with prices, merchants and ratings. Pricing: https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: Search Google Shopping for products with prices, merchants and ratings.
+parameters:
+- name: query
+  type: string
+  required: true
+  label:
+    en_US: Query
+  human_description:
+    en_US: What to search for.
+  form: llm
+  llm_description: The search query.
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Two-letter country code, such as us, gb or de.
+  form: llm
+  llm_description: Optional two-letter country code for localized results, e.g. us, gb, de.
+- name: language
+  type: string
+  required: false
+  label:
+    en_US: Language
+  human_description:
+    en_US: Language code, such as en or de.
+  form: llm
+  llm_description: Optional interface language code, e.g. en, de.
+- name: location
+  type: string
+  required: false
+  label:
+    en_US: Location
+  human_description:
+    en_US: City-level location, such as "Austin, Texas, United States".
+  form: llm
+  llm_description: Optional city-level location, e.g. "Austin, Texas, United States".
+- name: page
+  type: number
+  required: false
+  label:
+    en_US: Page
+  human_description:
+    en_US: Result page, 1 to 10.
+  form: llm
+  llm_description: Optional result page from 1 to 10.
+  min: 1
+  max: 10
+- name: output
+  type: select
+  required: false
+  label:
+    en_US: Output
+  human_description:
+    en_US: markdown returns readable Markdown for agents; json returns the full JSON response for workflows, plus a short Markdown summary.
+  form: form
+  default: markdown
+  options:
+  - value: markdown
+    label:
+      en_US: markdown
+  - value: json
+    label:
+      en_US: json
+extra:
+  python:
+    source: tools/shopping.py

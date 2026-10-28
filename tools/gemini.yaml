@@ -1,0 +1,66 @@
+identity:
+  author: serpkite
+  name: gemini
+  label:
+    en_US: Ask Gemini
+description:
+  human:
+    en_US: 'Ask Google Gemini as a logged-out visitor and get its answer with the sources it grounded on. Usually takes 5–30 s. Pricing: https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: Ask Google Gemini as a logged-out visitor and get its answer with the sources it grounded on. Use it to see what Google Gemini tells people (AI visibility) or for a second opinion. Takes 5–30 s.
+    If it reports that the answer is still being finished, call it again with the same prompt within 10 minutes to receive it (not billed twice).
+parameters:
+- name: prompt
+  type: string
+  required: true
+  label:
+    en_US: Prompt
+  human_description:
+    en_US: The message to Google Gemini, up to 4,000 characters.
+  form: llm
+  llm_description: The question or message to send to Google Gemini, up to 4,000 characters.
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Ask from this country (two-letter code); answers, prices and shops follow it.
+  form: llm
+  llm_description: Optional two-letter country code to ask from, e.g. us, de, gb.
+- name: language
+  type: string
+  required: false
+  label:
+    en_US: Language
+  human_description:
+    en_US: Language code, such as en or de.
+  form: llm
+  llm_description: Optional interface language code, e.g. en, de.
+- name: track
+  type: string
+  required: false
+  label:
+    en_US: Track
+  human_description:
+    en_US: Comma-separated brands or domains to check the answer for (up to 20).
+  form: llm
+  llm_description: Optional comma-separated brands or domains to check whether the answer names or cites them (up to 20).
+- name: output
+  type: select
+  required: false
+  label:
+    en_US: Output
+  human_description:
+    en_US: markdown returns readable Markdown for agents; json returns the full JSON response for workflows, plus a short Markdown summary.
+  form: form
+  default: markdown
+  options:
+  - value: markdown
+    label:
+      en_US: markdown
+  - value: json
+    label:
+      en_US: json
+extra:
+  python:
+    source: tools/gemini.py

@@ -1,9 +1,9 @@
 # Privacy policy
 
-This plugin sends your search query, optional localization settings, and requested result count to the SerpKite API at `api.serpkite.com`. Your API key is sent only in an HTTPS Bearer authorization header to this fixed host. The provider's credential check sends the key to the non-billable account endpoint.
+This plugin sends the inputs of the tool you run (search queries, URLs, prompts, research questions and their options) to the SerpKite API at `api.serpkite.com` to perform that request. Your API key is sent only in an HTTPS Bearer authorization header to this fixed host. The provider's credential check sends the key to the free account endpoint.
 
-The plugin does not write files, create a database, persist searches or responses, or log API keys, queries, response contents, or request URLs. API failure messages omit raw request exceptions to avoid exposing query strings. Search outputs are returned to Dify, where the application's own history and logging settings apply.
+The plugin does not write files, create a database, persist requests or responses, or log API keys, inputs, response contents or request URLs. Error messages contain SerpKite's error text only, never the key or the request. Tool outputs are returned to Dify, where the application's own history and logging settings apply.
 
-SerpKite's processing, subprocessors, retention windows, and user rights are described at https://serpkite.com/privacy. Search execution requires the processing described there; this plugin does not override those policies.
+SerpKite's processing, subprocessors, retention windows and user rights are described at https://serpkite.com/privacy. This plugin does not override those policies.
 
 Contact: support@serpkite.com

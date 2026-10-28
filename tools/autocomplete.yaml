@@ -1,0 +1,56 @@
+identity:
+  author: serpkite
+  name: autocomplete
+  label:
+    en_US: Autocomplete
+description:
+  human:
+    en_US: 'Google query suggestions for a partial query. Pricing: https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: Get Google's query suggestions for a partial query. Useful for keyword ideas.
+parameters:
+- name: query
+  type: string
+  required: true
+  label:
+    en_US: Query
+  human_description:
+    en_US: The partial query.
+  form: llm
+  llm_description: The partial query to complete.
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Two-letter country code, such as us, gb or de.
+  form: llm
+  llm_description: Optional two-letter country code for localized results, e.g. us, gb, de.
+- name: language
+  type: string
+  required: false
+  label:
+    en_US: Language
+  human_description:
+    en_US: Language code, such as en or de.
+  form: llm
+  llm_description: Optional interface language code, e.g. en, de.
+- name: output
+  type: select
+  required: false
+  label:
+    en_US: Output
+  human_description:
+    en_US: markdown returns readable Markdown for agents; json returns the full JSON response for workflows, plus a short Markdown summary.
+  form: form
+  default: markdown
+  options:
+  - value: markdown
+    label:
+      en_US: markdown
+  - value: json
+    label:
+      en_US: json
+extra:
+  python:
+    source: tools/autocomplete.py

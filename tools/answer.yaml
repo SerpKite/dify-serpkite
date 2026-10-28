@@ -1,0 +1,111 @@
+identity:
+  author: serpkite
+  name: answer
+  label:
+    en_US: Answer with Citations
+description:
+  human:
+    en_US: 'Answer a question from live Google results with numbered citations. fast answers from the result page; standard also reads the top pages. A failed answer is not billed. Pricing: https://serpkite.com/pricing;
+      failed and empty requests are not billed.'
+  llm: Answer a question from live Google results with numbered citations. Use depth=fast for quick facts, standard (default) for questions that need the pages read.
+parameters:
+- name: query
+  type: string
+  required: true
+  label:
+    en_US: Question
+  human_description:
+    en_US: The question to answer.
+  form: llm
+  llm_description: The question to answer from live web results.
+- name: depth
+  type: select
+  required: false
+  label:
+    en_US: Depth
+  human_description:
+    en_US: fast answers from the result page; standard also reads the top pages.
+  form: llm
+  llm_description: 'Optional: fast or standard (default).'
+  options:
+  - value: fast
+    label:
+      en_US: fast
+  - value: standard
+    label:
+      en_US: standard
+- name: num_sources
+  type: number
+  required: false
+  label:
+    en_US: Sources to Read
+  human_description:
+    en_US: Pages to read with depth standard (1-5, default 3).
+  form: llm
+  llm_description: Optional number of pages to read with depth standard, 1 to 5.
+  min: 1
+  max: 5
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Two-letter country code, such as us, gb or de.
+  form: llm
+  llm_description: Optional two-letter country code for localized results, e.g. us, gb, de.
+- name: language
+  type: string
+  required: false
+  label:
+    en_US: Language
+  human_description:
+    en_US: Language code, such as en or de.
+  form: llm
+  llm_description: Optional interface language code, e.g. en, de.
+- name: time
+  type: select
+  required: false
+  label:
+    en_US: Time Range
+  human_description:
+    en_US: Only results from the last hour, day, week, month or year.
+  form: llm
+  llm_description: 'Optional recency filter: hour, day, week, month or year.'
+  options:
+  - value: hour
+    label:
+      en_US: hour
+  - value: day
+    label:
+      en_US: day
+  - value: week
+    label:
+      en_US: week
+  - value: month
+    label:
+      en_US: month
+  - value: year
+    label:
+      en_US: year
+- name: include_domains
+  type: string
+  required: false
+  label:
+    en_US: Include Domains
+  human_description:
+    en_US: Comma-separated domains to keep, such as reuters.com, .gov.
+  form: llm
+  llm_description: Optional comma-separated domains to restrict results to, e.g. reuters.com, github.com/org, .gov.
+- name: exclude_domains
+  type: string
+  required: false
+  label:
+    en_US: Exclude Domains
+  human_description:
+    en_US: Comma-separated domains to drop.
+  form: llm
+  llm_description: Optional comma-separated domains to drop from results.
+extra:
+  python:
+    source: tools/answer.py

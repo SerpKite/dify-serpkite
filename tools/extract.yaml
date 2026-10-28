@@ -1,0 +1,90 @@
+identity:
+  author: serpkite
+  name: extract
+  label:
+    en_US: Extract Pages
+description:
+  human:
+    en_US: 'Read up to 20 URLs as Markdown. Optionally return only the passages relevant to a query, a short AI summary of each page, or JSON matching a schema (AI options cost extra). Pricing: https://serpkite.com/pricing;
+      failed and empty requests are not billed.'
+  llm: Read up to 20 URLs (HTML or PDF) as clean Markdown. With query and highlights it returns only the most relevant passages; with summary a short summary per page; with output_schema the data as JSON
+    matching that schema.
+parameters:
+- name: urls
+  type: string
+  required: true
+  label:
+    en_US: URLs
+  human_description:
+    en_US: Comma- or newline-separated URLs (up to 20).
+  form: llm
+  llm_description: Comma-separated URLs to read, up to 20.
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Query
+  human_description:
+    en_US: What the highlights are ranked against.
+  form: llm
+  llm_description: 'Optional: what to rank passages against (use with highlights).'
+- name: highlights
+  type: number
+  required: false
+  label:
+    en_US: Highlights
+  human_description:
+    en_US: Passages per page ranked against the query (0 = the whole page).
+  form: llm
+  llm_description: Optional number of passages per page (1-10) most relevant to query; 0 or empty returns the whole page.
+  min: 0
+  max: 10
+- name: summary
+  type: boolean
+  required: false
+  label:
+    en_US: Summary
+  human_description:
+    en_US: Add a 3-6 sentence AI summary of each page (extra credits).
+  form: llm
+  llm_description: Optional. true adds a short summary of each page.
+- name: output_schema
+  type: string
+  required: false
+  label:
+    en_US: Output Schema
+  human_description:
+    en_US: 'A JSON Schema: return each page''s data as JSON matching it (extra credits).'
+  form: llm
+  llm_description: Optional JSON Schema (as a JSON string); each page's data is returned as JSON matching it.
+- name: prompt
+  type: string
+  required: false
+  label:
+    en_US: Extraction Prompt
+  human_description:
+    en_US: 'Guides the schema extraction: what to pick and how to normalise it.'
+  form: llm
+  llm_description: Optional instructions for the output_schema extraction.
+- name: max_tokens
+  type: number
+  required: false
+  label:
+    en_US: Max Tokens per Page
+  human_description:
+    en_US: Trim each page to about this many tokens (100-100000).
+  form: form
+  min: 100
+  max: 100000
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Fetch the pages as seen from this country (two-letter code).
+  form: llm
+  llm_description: Optional two-letter country code for geo-dependent pages.
+extra:
+  python:
+    source: tools/extract.py

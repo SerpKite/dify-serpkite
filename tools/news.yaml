@@ -5,48 +5,115 @@ identity:
     en_US: News Search
 description:
   human:
-    en_US: Search Google News and return structured results plus Markdown.
-  llm: Search Google News using a query. Returns JSON with results and metadata, plus Markdown with titles, links, and snippets.
+    en_US: 'Search Google News for recent articles with source and date. Pricing: https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: Search Google News for recent articles. Use for current events and recent coverage.
 parameters:
-  - name: query
-    type: string
-    required: true
+- name: query
+  type: string
+  required: true
+  label:
+    en_US: Query
+  human_description:
+    en_US: What to search for.
+  form: llm
+  llm_description: The search query.
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Two-letter country code, such as us, gb or de.
+  form: llm
+  llm_description: Optional two-letter country code for localized results, e.g. us, gb, de.
+- name: language
+  type: string
+  required: false
+  label:
+    en_US: Language
+  human_description:
+    en_US: Language code, such as en or de.
+  form: llm
+  llm_description: Optional interface language code, e.g. en, de.
+- name: time
+  type: select
+  required: false
+  label:
+    en_US: Time Range
+  human_description:
+    en_US: Only results from the last hour, day, week, month or year.
+  form: llm
+  llm_description: 'Optional recency filter: hour, day, week, month or year.'
+  options:
+  - value: hour
     label:
-      en_US: Search Query
-    human_description:
-      en_US: The query to search for.
-    llm_description: Search query, for example latest renewable energy research.
-    form: llm
-  - name: country
-    type: string
-    required: false
+      en_US: hour
+  - value: day
     label:
-      en_US: Country
-    human_description:
-      en_US: Two-letter country code, such as us or gb.
-    llm_description: Optional two-letter country code for localized results.
-    form: llm
-  - name: language
-    type: string
-    required: false
+      en_US: day
+  - value: week
     label:
-      en_US: Language
-    human_description:
-      en_US: Language code, such as en or de.
-    llm_description: Optional language code for results.
-    form: llm
-  - name: num
-    type: number
-    required: false
-    default: 10
-    min: 1
-    max: 100
+      en_US: week
+  - value: month
     label:
-      en_US: Number of Results
-    human_description:
-      en_US: Requested results (1-100), rounded up to whole pages. Depth costs up to 7 credits.
-    llm_description: Requested results from 1 to 100. Counts round up to pages and depth costs up to 7 credits.
-    form: llm
+      en_US: month
+  - value: year
+    label:
+      en_US: year
+- name: num
+  type: number
+  required: false
+  label:
+    en_US: Number of Results
+  human_description:
+    en_US: Requested articles (1-100); above 10 costs more.
+  form: llm
+  llm_description: Optional number of articles from 1 to 100; 10 is one page.
+  min: 1
+  max: 100
+- name: include_domains
+  type: string
+  required: false
+  label:
+    en_US: Include Domains
+  human_description:
+    en_US: Comma-separated domains to keep, such as reuters.com, .gov.
+  form: llm
+  llm_description: Optional comma-separated domains to restrict results to, e.g. reuters.com, github.com/org, .gov.
+- name: exclude_domains
+  type: string
+  required: false
+  label:
+    en_US: Exclude Domains
+  human_description:
+    en_US: Comma-separated domains to drop.
+  form: llm
+  llm_description: Optional comma-separated domains to drop from results.
+- name: include_answer
+  type: boolean
+  required: false
+  label:
+    en_US: Include AI Answer
+  human_description:
+    en_US: Also write a short cited answer over the results (extra credits).
+  form: llm
+  llm_description: Set true to also get a short cited answer written over the results.
+- name: output
+  type: select
+  required: false
+  label:
+    en_US: Output
+  human_description:
+    en_US: markdown returns readable Markdown for agents; json returns the full JSON response for workflows, plus a short Markdown summary.
+  form: form
+  default: json
+  options:
+  - value: markdown
+    label:
+      en_US: markdown
+  - value: json
+    label:
+      en_US: json
 extra:
   python:
     source: tools/news.py

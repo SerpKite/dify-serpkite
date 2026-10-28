@@ -1,0 +1,70 @@
+identity:
+  author: serpkite
+  name: crawl
+  label:
+    en_US: Start Site Crawl
+description:
+  human:
+    en_US: 'Start reading a whole website or section as Markdown, following links (honouring robots.txt). Returns a task ID for Get Crawl Result. Billed per page read; unused credits are returned. Pricing:
+      https://serpkite.com/pricing; failed and empty requests are not billed.'
+  llm: 'Start an async crawl of one website: pages are read as Markdown, following links up to max_depth hops. Returns a task ID; then call Get Crawl Result with it.'
+parameters:
+- name: url
+  type: string
+  required: true
+  label:
+    en_US: Start URL
+  human_description:
+    en_US: The page to start from.
+  form: llm
+  llm_description: The start page of the crawl.
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Page Limit
+  human_description:
+    en_US: Maximum pages to read (default 25).
+  form: llm
+  llm_description: Optional maximum number of pages (default 25).
+  min: 1
+  max: 1000
+- name: max_depth
+  type: number
+  required: false
+  label:
+    en_US: Max Depth
+  human_description:
+    en_US: Link hops from the start page (default 2).
+  form: llm
+  llm_description: Optional link hops from the start page (default 2).
+  min: 0
+  max: 10
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Query
+  human_description:
+    en_US: Read the pages most relevant to this first.
+  form: llm
+  llm_description: 'Optional: read the pages most relevant to this first.'
+- name: include_paths
+  type: string
+  required: false
+  label:
+    en_US: Include Paths
+  human_description:
+    en_US: Comma-separated regular expressions; follow only URL paths matching one.
+  form: form
+- name: exclude_paths
+  type: string
+  required: false
+  label:
+    en_US: Exclude Paths
+  human_description:
+    en_US: Comma-separated regular expressions; never follow URL paths matching one.
+  form: form
+extra:
+  python:
+    source: tools/crawl.py

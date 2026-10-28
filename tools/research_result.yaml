@@ -1,0 +1,33 @@
+identity:
+  author: serpkite
+  name: research_result
+  label:
+    en_US: Get Research Result
+description:
+  human:
+    en_US: Get the status or the report of a research task started with Start Deep Research, waiting for it to finish if needed. Free.
+  llm: Get the status or the cited report of a research task started with Start Deep Research. Waits up to wait_seconds for it to finish.
+parameters:
+- name: id
+  type: string
+  required: true
+  label:
+    en_US: Task ID
+  human_description:
+    en_US: The task id returned when the task was started.
+  form: llm
+  llm_description: The task id returned when the task was started.
+- name: wait_seconds
+  type: number
+  required: false
+  label:
+    en_US: Wait (seconds)
+  human_description:
+    en_US: How long to wait for the task to finish before returning its current status (0 to 240).
+  form: form
+  default: 60
+  min: 0
+  max: 240
+extra:
+  python:
+    source: tools/research_result.py

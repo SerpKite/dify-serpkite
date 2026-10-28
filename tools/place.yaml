@@ -1,0 +1,66 @@
+identity:
+  author: serpkite
+  name: place
+  label:
+    en_US: Place Details
+description:
+  human:
+    en_US: 'The full Google Maps listing of one place: address, hours per weekday, website, phone, rating, description and photos. Pricing: https://serpkite.com/pricing; failed and empty requests are not
+      billed.'
+  llm: 'Get the full Google Maps listing of one place by its place_id (or cid) from a Maps Search result: address, opening hours, website, phone, rating, description and photos.'
+parameters:
+- name: place_id
+  type: string
+  required: false
+  label:
+    en_US: Place ID
+  human_description:
+    en_US: Google place id ("ChIJ…") from a Maps Search result.
+  form: llm
+  llm_description: The Google place id ("ChIJ…") from a Maps Search result.
+- name: cid
+  type: string
+  required: false
+  label:
+    en_US: CID
+  human_description:
+    en_US: Decimal customer id from a Maps Search result, instead of the place id.
+  form: llm
+  llm_description: Optional decimal cid from a Maps Search result, used instead of place_id.
+- name: country
+  type: string
+  required: false
+  label:
+    en_US: Country
+  human_description:
+    en_US: Two-letter country code, such as us, gb or de.
+  form: llm
+  llm_description: Optional two-letter country code for localized results, e.g. us, gb, de.
+- name: language
+  type: string
+  required: false
+  label:
+    en_US: Language
+  human_description:
+    en_US: Language code, such as en or de.
+  form: llm
+  llm_description: Optional interface language code, e.g. en, de.
+- name: output
+  type: select
+  required: false
+  label:
+    en_US: Output
+  human_description:
+    en_US: markdown returns readable Markdown for agents; json returns the full JSON response for workflows, plus a short Markdown summary.
+  form: form
+  default: markdown
+  options:
+  - value: markdown
+    label:
+      en_US: markdown
+  - value: json
+    label:
+      en_US: json
+extra:
+  python:
+    source: tools/place.py
